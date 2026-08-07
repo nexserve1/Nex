@@ -225,17 +225,18 @@
 <div class="form-panel" data-reveal="right">
   <h3 class="mt-1" style="margin-bottom:6px;">Send a message</h3>
   <p style="margin-bottom:26px;font-size:.9rem;">We reply within 30 minutes during business hours.</p>
-  <form data-validate novalidate id="contactForm">
+  <form data-validate novalidate id="contactForm" data-sheet-form="true">
     <input type="text" name="company_website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <input type="hidden" name="formType" value="Contact Page Enquiry">
     <div class="form-row">
-      <div class="field"><label for="fName">Full Name <span class="req">*</span></label><input type="text" id="fName" required><span class="field-error">Please enter your name.</span></div>
-      <div class="field"><label for="fPhone">Phone Number <span class="req">*</span></label><input type="tel" id="fPhone" required><span class="field-error">Enter a valid phone number.</span></div>
+      <div class="field"><label for="fName">Full Name <span class="req">*</span></label><input type="text" id="fName" name="name" required><span class="field-error">Please enter your name.</span></div>
+      <div class="field"><label for="fPhone">Phone Number <span class="req">*</span></label><input type="tel" id="fPhone" name="phone" required><span class="field-error">Enter a valid phone number.</span></div>
     </div>
     <div class="form-row">
-      <div class="field"><label for="fEmail">Email Address <span class="req">*</span></label><input type="email" id="fEmail" required><span class="field-error">Enter a valid email address.</span></div>
+      <div class="field"><label for="fEmail">Email Address <span class="req">*</span></label><input type="email" id="fEmail" name="email" required><span class="field-error">Enter a valid email address.</span></div>
       <div class="field">
         <label for="fNeed">What do you need help with? <span class="req">*</span></label>
-        <select id="fNeed" required>
+        <select id="fNeed" name="service" required>
           <option value="" selected disabled>Select a service</option>
           <option>Laptop Sales</option><option>Laptop Repair</option><option>Data Recovery</option>
           <option>AMC Services</option><option>CCTV Installation</option><option>Networking Solutions</option>
@@ -245,7 +246,7 @@
         <span class="field-error">Please select an option.</span>
       </div>
     </div>
-    <div class="field"><label for="fMsg">Message <span class="req">*</span></label><textarea id="fMsg" required placeholder="Describe your issue or requirement…"></textarea><span class="field-error">Please add a short message.</span></div>
+    <div class="field"><label for="fMsg">Message <span class="req">*</span></label><textarea id="fMsg" name="message" required placeholder="Describe your issue or requirement…"></textarea><span class="field-error">Please add a short message.</span></div>
     <div class="consent-row"><input type="checkbox" id="fConsent" required><label for="fConsent">I agree to be contacted about my enquiry and accept the <a href="privacy.html" style="color:var(--blue-600);">Privacy Policy</a>.</label></div>
     <button type="submit" class="btn btn-primary btn-block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Message</button>
   </form>

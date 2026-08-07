@@ -281,25 +281,26 @@
   <div class="container" style="max-width:760px;">
     <div class="section-head center"><span class="eyebrow">Apply</span><h2>Send us your application</h2></div>
     <div class="form-panel" data-reveal="scale">
-      <form data-validate novalidate>
+      <form data-validate novalidate data-sheet-form="true">
         <input type="text" name="company_website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="formType" value="Career Application">
         <div class="form-row">
-          <div class="field"><label for="cFullName">Full Name <span class="req">*</span></label><input type="text" id="cFullName" required><span class="field-error">Please enter your name.</span></div>
-          <div class="field"><label for="cPhone">Phone Number <span class="req">*</span></label><input type="tel" id="cPhone" required><span class="field-error">Enter a valid phone number.</span></div>
+          <div class="field"><label for="cFullName">Full Name <span class="req">*</span></label><input type="text" id="cFullName" name="name" required><span class="field-error">Please enter your name.</span></div>
+          <div class="field"><label for="cPhone">Phone Number <span class="req">*</span></label><input type="tel" id="cPhone" name="phone" required><span class="field-error">Enter a valid phone number.</span></div>
         </div>
         <div class="form-row">
-          <div class="field"><label for="cEmail">Email Address <span class="req">*</span></label><input type="email" id="cEmail" required><span class="field-error">Enter a valid email address.</span></div>
+          <div class="field"><label for="cEmail">Email Address <span class="req">*</span></label><input type="email" id="cEmail" name="email" required><span class="field-error">Enter a valid email address.</span></div>
           <div class="field">
             <label for="cRole">Position Applying For <span class="req">*</span></label>
-            <select id="cRole" required>
+            <select id="cRole" name="service" required>
               <option value="" selected disabled>Select a role</option>
               <option>Laptop Repair Technician</option><option>Network Support Engineer</option><option>CCTV Installation Specialist</option><option>Customer Support Executive</option><option>Field Service Engineer (Doorstep)</option>
             </select>
             <span class="field-error">Please select a role.</span>
           </div>
         </div>
-        <div class="field"><label for="cExp">Years of Experience</label><input type="text" id="cExp" placeholder="e.g. 2 years"></div>
-        <div class="field"><label for="cMsg">Tell us about yourself <span class="req">*</span></label><textarea id="cMsg" required placeholder="Relevant experience, certifications, availability…"></textarea><span class="field-error">Please share a few details.</span></div>
+        <div class="field"><label for="cExp">Years of Experience</label><input type="text" id="cExp" name="experience" placeholder="e.g. 2 years"></div>
+        <div class="field"><label for="cMsg">Tell us about yourself <span class="req">*</span></label><textarea id="cMsg" name="message" required placeholder="Relevant experience, certifications, availability…"></textarea><span class="field-error">Please share a few details.</span></div>
         <div class="consent-row"><input type="checkbox" id="cConsent" required><label for="cConsent">I agree to NexServe contacting me about this application and consent to the <a href="privacy.html" style="color:var(--blue-600);">Privacy Policy</a>.</label></div>
         <button type="submit" class="btn btn-primary btn-block">Submit Application <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
       </form>

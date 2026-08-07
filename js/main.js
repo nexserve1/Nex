@@ -13,6 +13,15 @@
   };
   window.NEXSERVE_CONTACT = CONTACT;
 
+  /* ---------------------------------------------------------------
+     Google Sheet integration.
+     Paste your Google Apps Script "Web app" URL below between the
+     quotes (looks like: https://script.google.com/macros/s/AKfycb.../exec).
+     Leave it as an empty string to disable — forms will still show
+     the success message, they just won't save anywhere.
+  --------------------------------------------------------------- */
+  var GOOGLE_SHEET_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby00HoBDZpvecDh4HcgpZY4eL_vUWhEdIXgazjW7kV31m9LSkGTT7pu47HyctpJh6Yd/exec";
+
   document.addEventListener("DOMContentLoaded", function(){
     initLoader();
     initHeader();
@@ -419,12 +428,34 @@
         var originalText = btn ? btn.textContent : "";
         if(btn){ btn.textContent = "Sending…"; btn.disabled = true; }
 
-        setTimeout(function(){
+        function finishSuccess(){
           if(btn){ btn.textContent = originalText; btn.disabled = false; }
           form.reset();
           form.querySelectorAll(".field.invalid").forEach(function(f){ f.classList.remove("invalid"); });
           showToast("success", "Message received!", "Our team will contact you within 2 business hours.");
-        }, 900);
+        }
+
+        // If this form is wired to Google Sheets and a webhook URL is configured, send it there.
+        if(form.hasAttribute("data-sheet-form") && GOOGLE_SHEET_WEBHOOK_URL){
+          var params = new URLSearchParams();
+          fields = form.querySelectorAll("[name]");
+          fields.forEach(function(f){
+            if(f.name && f.type !== "checkbox"){ params.append(f.name, f.value); }
+          });
+          fetch(GOOGLE_SHEET_WEBHOOK_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {"Content-Type":"application/x-www-form-urlencoded"},
+            body: params.toString()
+          }).then(function(){
+            finishSuccess();
+          }).catch(function(){
+            // Even on network hiccups, Apps Script often still receives the data (no-cors hides the real response).
+            finishSuccess();
+          });
+        } else {
+          setTimeout(finishSuccess, 900);
+        }
       });
     });
 
